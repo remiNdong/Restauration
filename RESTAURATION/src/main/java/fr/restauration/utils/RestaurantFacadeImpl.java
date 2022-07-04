@@ -12,7 +12,7 @@ import fr.restauration.model.Restaurant;
 
 public class RestaurantFacadeImpl extends  AbstractRestaurantFacade{
 	
-	private final String adresseFichier="static/restaurants.txt";
+	private final String adresseFichier="restaurants.txt";
 	
 	 public  RestaurantFacadeImpl() throws Exception{
 	        setRestaurants(new TreeMap<String,Restaurant>());

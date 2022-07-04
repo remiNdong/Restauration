@@ -22,7 +22,7 @@ public abstract class AbstractRestaurantFacade implements RestaurantFacadeI, Ite
 	    private ParserRestaurantI parser;
 	    private ParserRestaurantI.Command addCommand = new ParserRestaurantI.Command(){
 	            public void execute(Restaurant r){
-	            	AbstractRestaurantFacade.this.restaurants.put(r.getId(), r);
+	            	AbstractRestaurantFacade.this.restaurants.put(r.getRecordid(), r);
 	            }
 	        };
 

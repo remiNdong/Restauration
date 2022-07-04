@@ -47,7 +47,7 @@ public class JacksonParserRestaurant implements ParserRestaurantI {
 	    private List<Restaurant> getRestaurants(String body) throws Exception {
 	    	int indexOfRestaurantArray = body.indexOf("datasetid");
 			int indexOfEndArray = body.indexOf("facet_groups");
-			 body = body.substring(indexOfRestaurantArray - 2, indexOfEndArray - 4);
+			body = body.substring(indexOfRestaurantArray - 4, indexOfEndArray - 3);
 	        return objectMapper.readValue(body, new TypeReference<List<Restaurant>>(){});
 	    }
 	    

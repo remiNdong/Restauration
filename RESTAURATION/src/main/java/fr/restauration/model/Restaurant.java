@@ -1,37 +1,87 @@
 package fr.restauration.model;
 
+import java.io.Serializable;
+import java.util.Map;
 
-public class Restaurant {
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+//Annotation Jackson : Les propriétés json non reprises dans notre objet seront ignorées sans générer d'erreur
+@JsonIgnoreProperties(ignoreUnknown = true)
+
+
+public class Restaurant implements Serializable{
 	
-	private String id;
-	private String nom;
-	private int codePostal;
+	private String recordid;
+	private String nom_restaurant;
+	private String code;
 	private String adresse;
+	private String ville;
+	
+	@JsonProperty("fields")
+	private void unpackNested(Fields fields) {
+		nom_restaurant = fields.getNom_restaurant();
+		code = fields.getCode();
+		adresse=fields.getAdresse();
+		ville=fields.getVille();
+	}
 	
 	
-	public String getId() {
-		return id;
+	
+	public String getRecordid() {
+		return recordid;
 	}
-	public void setId(String id) {
-		this.id = id;
+	public void setRecordid(String recordid) {
+		this.recordid = recordid;
 	}
-	public String getNom() {
-		return nom;
-	}
-	public void setNom(String nom) {
-		this.nom = nom;
-	}
-	public int getCodePostal() {
-		return codePostal;
-	}
-	public void setCodePostal(int codePostal) {
-		this.codePostal = codePostal;
-	}
+	
+	
+	
 	public String getAdresse() {
 		return adresse;
 	}
 	public void setAdresse(String adresse) {
 		this.adresse = adresse;
+	}
+
+
+
+	public String getNom_restaurant() {
+		return nom_restaurant;
+	}
+
+
+
+	public void setNom_restaurant(String nom_restaurant) {
+		this.nom_restaurant = nom_restaurant;
+	}
+
+
+
+	public String getCode() {
+		return code;
+	}
+
+
+
+	public void setCode(String code) {
+		this.code = code;
+	}
+
+
+
+	public String getVille() {
+		return ville;
+	}
+
+
+
+	public void setVille(String ville) {
+		this.ville = ville;
+	}
+	
+	public String toString() {
+		return "recordid:"+recordid+" nom_restaurant:"+nom_restaurant+ " code:"+code+" adresse:"+adresse+" ville:"+ville;
 	}
 
 }
