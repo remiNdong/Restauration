@@ -3,16 +3,21 @@ package fr.restauration.model;
 import java.io.Serializable;
 import java.util.Map;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 //Annotation Jackson : Les propriétés json non reprises dans notre objet seront ignorées sans générer d'erreur
 @JsonIgnoreProperties(ignoreUnknown = true)
 
-
+@Entity
 public class Restaurant implements Serializable{
 	
+	@Id
 	private String recordid;
+	
 	private String nom_restaurant;
 	private String code;
 	private String adresse;

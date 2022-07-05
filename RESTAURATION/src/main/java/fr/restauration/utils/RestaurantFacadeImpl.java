@@ -18,18 +18,21 @@ public class RestaurantFacadeImpl extends  AbstractRestaurantFacade{
 	        setRestaurants(new TreeMap<String,Restaurant>());
 	        var client = HttpClient.newBuilder().build();
 	        try {
+	        	
+	        	//on cree la requete Http
 	            var request = HttpRequest
 	                            .newBuilder()
 	                            .uri(URI.create(URL_RESTAURANTS))
 	                            .timeout(Duration.ofSeconds(30))
 	                            .build();
-	            Long startingTime = System.currentTimeMillis();                
+	            Long startingTime = System.currentTimeMillis();  
+	            
+	            //on lance la requete Http
 	            var response = client.send(request,HttpResponse.BodyHandlers.ofString()); 
 	            System.out.println("durée de collecte URL_RESTAURANTS : "+(System.currentTimeMillis()-startingTime));
 	            // on sauvegarde la dernière version au cas où ... 
 	            sauvegarder(response.body(), adresseFichier);
 	            setParser(new JacksonParserRestaurant(response.body())); 
-	            //setParser(new GsonParserStationLastStatusImpl(response.body())); 
 	            getParser().setCommand(getAddCommand());
 	            startingTime = System.currentTimeMillis();
 	            getParser().parse();

@@ -7,6 +7,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import fr.restauration.model.Restaurant;
 
+/*
+ * Classe qui definit comment parser des restaurants recuperer dans un fichier json
+ */
 public class JacksonParserRestaurant implements ParserRestaurantI {
 	
 	   private String body;
@@ -30,9 +33,12 @@ public class JacksonParserRestaurant implements ParserRestaurantI {
 	        this.body=body;
 	    }
 	    
+	    /*
+	     * Classe qui permettra de peupler la Map de la facade  avec les restaurants
+	     */
+	    
 	    public void parse() throws Exception {
 	        List<Restaurant> listRestaurants = getRestaurants(body);
-	        //System.out.println(listStations.get(1));
 	        for(Restaurant restaurant : listRestaurants){           
 	            try{
 	                cmd.execute(restaurant);
@@ -44,6 +50,9 @@ public class JacksonParserRestaurant implements ParserRestaurantI {
 	        }
 	    }
 
+	    /*
+	     * Methode qui permet de recuperer une liste de Restaurants depuis un fichier Json
+	     */
 	    private List<Restaurant> getRestaurants(String body) throws Exception {
 	    	int indexOfRestaurantArray = body.indexOf("datasetid");
 			int indexOfEndArray = body.indexOf("facet_groups");

@@ -69,7 +69,8 @@ public abstract class AbstractRestaurantFacade implements RestaurantFacadeI, Ite
 	    }
 	    
 
-	    // Sauvegarder la réponse du serveur dans un fichier
+	    // Sauvegarder la réponse du serveur dans un fichier au cas ou il y a un probleme a la prochaine requete Http
+	    //pour recuperer le json
 	    public static void sauvegarder(String response, String nomDuFichier)throws Exception{
 	        try{
 	            OutputStream out = new FileOutputStream(new File(nomDuFichier));
@@ -88,6 +89,7 @@ public abstract class AbstractRestaurantFacade implements RestaurantFacadeI, Ite
 	        }
 	    }
 	    
+	    //methode qui sera utilisee au cas ou a un probleme a la prochaine requete Http pour recuperer le json
 	    public static String restaurer(String nomDuFichier)throws IOException{
 	        Path fileName = Path.of(nomDuFichier);
 	        return Files.readString(fileName);

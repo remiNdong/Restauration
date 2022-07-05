@@ -9,6 +9,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 //Annotation Jackson : Les propriétés json non reprises dans notre objet seront ignorées sans générer d'erreur
 @JsonIgnoreProperties(ignoreUnknown = true)
 
+/*
+ * Fields represente des attributs qui seront recuperer en deserialisant un Restaurant d'un fichier  json
+ */
+
 public class Fields  implements Serializable{
 	
 	private String code;
