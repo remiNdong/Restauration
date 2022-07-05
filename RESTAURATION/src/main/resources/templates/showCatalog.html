@@ -1,0 +1,26 @@
+<!DOCTYPE HTML>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+
+<body>
+	<div class="container">
+		<h3>----- CATALOGUE -----</h3>
+		<table>
+			<tr>
+				<th>ID</th>
+				<th>Nom</th>
+				<th>code</th>
+				<th>adresse</th>
+				<th>ville</th>
+			</tr>
+			<tr th:each="art : ${catalog}">
+				<td><a th:href="@{'/showJson/'+${art.recordid}}" th:text="${art.recordid}"></a></td>
+				<td id="artNom" th:text="${art.nom_restaurant}"></td>
+				<td th:text="${art.code}"></td>
+				<td th:text="${art.adresse}"></td>
+				<td th:text="${art.ville}"></td>
+			</tr>
+		</table>
+	</div>
+</body>
+
+</html>
