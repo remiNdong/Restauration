@@ -1,7 +1,14 @@
 <!DOCTYPE HTML>
 <html lang="fr" xmlns:th="http://www.thymeleaf.org">
 
+<head>
+	<th:block th:insert="default.html :: headerfiles"></th:block>
+</head>
+
 <body>
+	<nav>
+		<th:block th:insert="default.html :: navbar"></th:block>
+	</nav>
 	<div class="container">
 		<h3>----- CATALOGUE -----</h3>
 		<table>
@@ -20,6 +27,9 @@
 				<td th:text="${art.ville}"></td>
 			</tr>
 		</table>
+	</div>
+	<div>
+		<th:block th:insert="default.html :: scripts">
 	</div>
 </body>
 

@@ -3,10 +3,12 @@ package fr.restauration.authentification;
 import java.io.Serializable;
 
 import javax.persistence.Entity;
+import javax.persistence.Id;
 
 @Entity
 public class User implements Serializable {
 	
+	@Id
 	private String email;
 	
 	private String pseudo;
