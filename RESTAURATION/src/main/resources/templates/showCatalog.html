@@ -10,18 +10,18 @@
 		<th:block th:insert="default.html :: navbar"></th:block>
 	</nav>
 	<div class="container">
-		<h3>----- CATALOGUE -----</h3>
-		<table>
+
+
+		<h3>RESTAURANTS </h3>
+		<table class="table table-hover">
 			<tr>
-				<th>ID</th>
 				<th>Nom</th>
 				<th>code</th>
 				<th>adresse</th>
 				<th>ville</th>
 			</tr>
 			<tr th:each="art : ${catalog}">
-				<td><a th:href="@{'/showJson/'+${art.recordid}}" th:text="${art.recordid}"></a></td>
-				<td id="artNom" th:text="${art.nom_restaurant}"></td>
+				<td><a th:href="@{'/showJson/'+${art.recordid}}" th:text="${art.nom_restaurant}"></a></td>
 				<td th:text="${art.code}"></td>
 				<td th:text="${art.adresse}"></td>
 				<td th:text="${art.ville}"></td>

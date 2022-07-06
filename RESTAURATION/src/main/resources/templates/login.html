@@ -9,6 +9,7 @@
 		<div class="container">
 			<br> <br> <br>
 			<h3 th:text="#{login.title}"></h3>
+			<div th:if="${param.reussite != null}" th:text="#{login.reussite}" class="alert alert-success"></div>
 			<hr />
 			<br>
 			<div th:if="${param.error != null}" class="alert alert-danger" th:text="${session[SPRING_SECURITY_LAST_EXCEPTION]}"></div>
