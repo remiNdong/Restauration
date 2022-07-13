@@ -3,6 +3,21 @@
 
 <head>
 	<th:block th:insert="default.html :: headerfiles"></th:block>
+	<style type="text/css">
+		h3 {
+			text-align: center;
+			font-weight: bold;
+			color: #F1B992
+		}
+
+		th {
+			background-color: #F1B992;
+			color: white;
+		}
+		
+		#etoile{width: 40px;
+	        height: 30px;}
+	</style>
 </head>
 
 <body>
@@ -13,15 +28,17 @@
 
 
 		<h3>RESTAURANTS </h3>
-		<table class="table table-hover">
+		<table class="table table-hover table-bordered">
 			<tr>
+				<th>Etoiles</th>
 				<th>Nom</th>
 				<th>code</th>
 				<th>adresse</th>
 				<th>ville</th>
 			</tr>
 			<tr th:each="art : ${catalog}">
-				<td><a th:href="@{'/showJson/'+${art.recordid}}" th:text="${art.nom_restaurant}"></a></td>
+				<td><img id="etoile" th:if="${art.moyenne>0}" th:each="i : ${#numbers.sequence( 1, art.moyenne)}" th:src="@{/images/etoile.jpg}"/>
+				<td><a th:href="@{'/showDetail/'+${art.recordid}}" th:text="${art.nom_restaurant}"></a></td>
 				<td th:text="${art.code}"></td>
 				<td th:text="${art.adresse}"></td>
 				<td th:text="${art.ville}"></td>

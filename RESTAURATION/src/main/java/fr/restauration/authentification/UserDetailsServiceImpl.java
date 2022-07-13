@@ -4,11 +4,12 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-
 
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
@@ -28,4 +29,5 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 					.password(user.getPassword()).authorities(List.of(new SimpleGrantedAuthority("ROLE_USER"))).build();
 		}
 	}
+
 }

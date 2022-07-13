@@ -1,0 +1,138 @@
+<!DOCTYPE HTML>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<th:block th:insert="default.html :: headerfiles"></th:block>
+	<style type="text/css">
+		.jumbotron {
+			background-color: #F5FBEC;
+			text-align: center;
+		}
+
+		.etoile {
+			width: 40px;
+			height: 30px;
+		}
+
+		#info {
+			text-align: center;
+		}
+
+		#myForm {
+			text-align: center;
+		}
+
+		#com {
+			width: 300px;
+			height: 100px;
+		}
+
+		#etoi {
+			width: 100px
+		}
+	</style>
+</head>
+
+<body>
+	<nav>
+		<th:block th:insert="default.html :: navbar"></th:block>
+	</nav>
+	<div class="container">
+		<div class="jumbotron">
+			<h3 th:text="${restaurant.nom_restaurant}">
+				<span th:if="${restaurant.moyenne>0}">
+					<img class="etoile" th:each="i : ${#numbers.sequence( 1, restaurant.moyenne)}"
+						th:src="@{/images/etoile.jpg}" />
+				</span>
+			</h3>
+			<p th:text="${restaurant.code}"></p>
+			<p th:text="${restaurant.adresse}"></p>
+			<p th:text="${restaurant.ville}"></p>
+
+		</div>
+
+		<div id="notations" th:if="${restaurant.tailleNotations>0}">
+
+			<ul>
+				<li th:each="not : ${notations}">
+					<span id="com" th:text="${not.date   }"></span>
+					<span><img class="etoile" th:if="${not.etoiles>0}"
+							th:each="i : ${#numbers.sequence( 0, not.etoiles)}" th:src="@{/images/etoile.jpg}" /></span>
+					<span id="user" th:text="${not.user.pseudo }"></span>
+					<span id="com" th:text="${not.commentaire }"></span>
+				</li>
+
+			</ul>
+			
+
+		</div>
+		<div class="alert alert-info" sec:authorize="isAnonymous()" id="info">
+			<strong>Info!</strong> Identifiez vous si vous voulez laisser un commentaire
+		</div>
+		<button sec:authorize="isAuthenticated()" type="button" class="btn btn-info" data-toggle="collapse"
+			data-target="#myForm">Laissez un commentaire </button>
+
+
+
+
+
+
+		<form sec:authorize="isAuthenticated()" class="form-horizontal collapse" id="myForm" method="post"
+			th:action="@{'/showDetail'}" th:object="${notation}" onsubmit="return verifForm()">
+			<div class="form-group">
+
+				<div>
+					<select th:field="${notation.etoiles}" name="etoiles" id="etoi">
+						<option value="none">Etoiles...</option>
+						<option th:each="i : ${#numbers.sequence(0, 5)}" th:value="${i}" th:text="${i}">
+						</option>
+					</select>
+				</div>
+				<div class="text-danger" id="erreurEtoiles"></div>
+			</div>
+			<div class="form-group">
+				<label for="newCommentaire" th:text="#{new.commentaire}"></label>
+				<div class="text-center">
+					<textarea type="text" th:field="${notation.commentaire}" id="com" name="com"
+						th:placeholder="${notation.commentaire}" maxlength="210" />
+				</div>
+				<div class="text-danger" id="erreurCom"></div>
+			</div>
+			<input type="hidden" th:field="${notation.user}" value="${notation.user}">
+			<input type="hidden" th:field="${notation.restaurant}" "${notation.restaurant}">
+
+
+			<button type="submit" class="btn btn-primary">ENVOYER</button>
+		</form>
+	</div>
+	<div>
+		<th:block th:insert="default.html :: scripts">
+	</div>
+
+
+	<script type="text/javascript">
+		function verifForm() {
+			$("#erreurEtoiles").text("");
+			$("#erreurCom").text("");
+
+
+			var resultat = true;
+			var etoiles = $("#etoi").val();
+			var com = $("#com").val();
+
+			if (etoiles == "none") {
+				resultat = false;
+				$("#erreurEtoiles").text("Selectionnez un nombre d'etoiles ");
+			}
+
+			if (com == "") {
+				resultat = false;
+				$("#erreurCom").text("Veuillez entrer un commentaire ");
+			}
+
+			return resultat;
+		}
+	</script>
+</body>
+
+</html>

@@ -1,10 +1,16 @@
 package fr.restauration.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -14,6 +20,12 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Entity
 public class Restaurant implements Serializable{
+	
+	public Restaurant() {
+		notations = new HashSet<Notation>();
+
+		
+	}
 	
 	@Id
 	private String recordid;
@@ -88,5 +100,45 @@ public class Restaurant implements Serializable{
 	public String toString() {
 		return "recordid:"+recordid+" nom_restaurant:"+nom_restaurant+ " code:"+code+" adresse:"+adresse+" ville:"+ville;
 	}
+	
+	 @OneToMany( mappedBy = "restaurant" )
+	    private Set<Notation> notations = new HashSet<Notation>();
+
+	    public Set<Notation> getNotations() {
+	        return notations;
+	    }
+
+	    public List<Notation> getNotationsTriees() {
+	        List<Notation> listNotations = new ArrayList<Notation>( notations );
+	        Collections.sort( listNotations );
+	        return listNotations;
+	    }
+
+	    public void addNotations( Notation n ) {
+
+	        n.setRestaurant( this );
+	        notations.add( n );
+	    }
+	    
+	    
+	    public int getMoyenne() {
+	    	
+	    	if(notations.size()==0)
+	    		return 0;
+	    	
+	    	int somme=0;
+	    	for(Notation n : notations)
+	    		somme=somme+n.getEtoiles();
+	    	
+	    
+	    	return somme/notations.size();
+	    	
+	    }
+	    
+	    public int getTailleNotations() {
+	    	return notations.size();
+	    }
+	
+	
 
 }
