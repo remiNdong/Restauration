@@ -105,7 +105,7 @@ public class Notation implements Serializable , Comparable<Notation> {
 	    
 	    public String toString() {
 	    	
-	    	return "User:"+user.getEmail()+" Restaurant:"+restaurant.getNom_restaurant()+" Etoiles:"+etoiles+"  Commentaire:"+commentaire;
+	    	return "Date:"+date+" User:"+user.getEmail()+" Restaurant:"+restaurant.getNom_restaurant()+" Etoiles:"+etoiles+"  Commentaire:"+commentaire;
 	    }
 
 }

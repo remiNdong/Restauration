@@ -20,7 +20,12 @@
 
 		#myForm {
 			text-align: center;
+			 border: solid  #26DBF0;
+			border-width: thick;
+			background-color: #E8FAFE;
 		}
+
+
 
 		#com {
 			width: 300px;
@@ -30,6 +35,23 @@
 		#etoi {
 			width: 100px
 		}
+
+		#userCom {
+			font-weight: bolder;
+			color: blue;
+			text-decoration: underline;
+		}
+
+		button {
+			margin: 4px
+		}
+
+		#notationsDiv {
+			 border: solid  #356CB2;
+			border-width: thick;
+			
+		}
+		
 	</style>
 </head>
 
@@ -50,63 +72,68 @@
 			<p th:text="${restaurant.ville}"></p>
 
 		</div>
-		
+
 		<!--<p th:text="${restaurant.notations}"></p>-->
+		<div>
+			<button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#notationsDiv"
+				th:if="${restaurant.tailleNotations>0}">Voir les commentaires </button>
 
-		<div id="notationsDiv" th:if="${restaurant.tailleNotations>0}">
+			<div id="notationsDiv" th:if="${restaurant.tailleNotations>0}" class="collapse rounded">
+					<ul>
+						<li th:each="nota : ${restaurant.notations}">
+							<span th:text="${nota.date}"></span>
+							<span><img class="etoile" th:if="${nota.etoiles>0}"
+									th:each="i : ${#numbers.sequence( 0, nota.etoiles)}"
+									th:src="@{/images/etoile.jpg}" /></span>
+							<span id="userCom" th:text="${nota.user.pseudo}"></span>
+							<span> : "</span>
+							<span th:text="${nota.commentaire}"></span>
+							<span> "</span>
+						</li>
 
-			<ul>
-				<li th:each="nota : ${restaurant.notations}"> 
-					<span th:text="${nota.date}"></span>
-					<span><img class="etoile" th:if="${nota.etoiles>0}"
-							th:each="i : ${#numbers.sequence( 0, nota.etoiles)}" th:src="@{/images/etoile.jpg}" /></span>
-					<span id="userCom" th:text="${nota.user.pseudo}"></span>
-					<span  th:text="${nota.commentaire}"></span> 
-				</li>
+					</ul>
 
-			</ul>
-			
-
-		</div>
-		
-		<div class="alert alert-info" sec:authorize="isAnonymous()" id="info">
-			<strong>Info!</strong> Identifiez vous si vous voulez laisser un commentaire
-		</div>
-		<button sec:authorize="isAuthenticated()" type="button" class="btn btn-info" data-toggle="collapse"
-			data-target="#myForm">Laissez un commentaire </button>
-
-
-
-
-
-
-		<form sec:authorize="isAuthenticated()" class="form-horizontal collapse" id="myForm" method="post"
-			th:action="@{'/showDetail'}" th:object="${notation}" onsubmit="return verifForm()">
-			<div class="form-group">
-
-				<div>
-					<select th:field="${notation.etoiles}" name="etoiles" id="etoi">
-						<option value="none">Etoiles...</option>
-						<option th:each="i : ${#numbers.sequence(0, 5)}" th:value="${i}" th:text="${i}">
-						</option>
-					</select>
-				</div>
-				<div class="text-danger" id="erreurEtoiles"></div>
 			</div>
-			<div class="form-group">
-				<label for="newCommentaire" th:text="#{new.commentaire}"></label>
-				<div class="text-center">
-					<textarea type="text" th:field="${notation.commentaire}" id="com" name="com"
-						th:placeholder="${notation.commentaire}" maxlength="210" />
-				</div>
-				<div class="text-danger" id="erreurCom"></div>
+		</div>
+
+
+
+		<div>
+			<div class="alert alert-info" sec:authorize="isAnonymous()" id="info">
+				<strong>Info!</strong> <a th:href="@{/login}">Identifiez </a> vous si vous voulez laisser un commentaire
 			</div>
-			<input type="hidden" th:field="${notation.user}" value="${notation.user}">
-			<input type="hidden" th:field="${notation.restaurant}" value="${notation.restaurant}">
+			<button sec:authorize="isAuthenticated()" type="button" class="btn btn-info" data-toggle="collapse"
+				data-target="#myForm">Laissez un commentaire </button>
 
 
-			<button type="submit" class="btn btn-primary">ENVOYER</button>
-		</form>
+			<form sec:authorize="isAuthenticated()" class="form-horizontal collapse rounded" id="myForm" method="post"
+				th:action="@{'/showDetail'}" th:object="${notation}" onsubmit="return verifForm()">
+				<div class="form-group">
+
+					<div>
+						<select th:field="${notation.etoiles}" name="etoiles" id="etoi">
+							<option value="none">Etoiles...</option>
+							<option th:each="i : ${#numbers.sequence(0, 5)}" th:value="${i}" th:text="${i}">
+							</option>
+						</select>
+					</div>
+					<div class="text-danger" id="erreurEtoiles"></div>
+				</div>
+				<div class="form-group">
+					<label for="newCommentaire" th:text="#{new.commentaire}"></label>
+					<div class="text-center">
+						<textarea type="text" th:field="${notation.commentaire}" id="com" name="com"
+							th:placeholder="${notation.commentaire}" maxlength="210" />
+					</div>
+					<div class="text-danger" id="erreurCom"></div>
+				</div>
+				<input type="hidden" th:field="${notation.user}" value="${notation.user}">
+				<input type="hidden" th:field="${notation.restaurant}" value="${notation.restaurant}">
+				<input type="hidden" th:field="${notation.date}" value="${notation.date}">
+
+				<button type="submit" class="btn btn-primary">ENVOYER</button>
+			</form>
+		</div>
 	</div>
 	<div>
 		<th:block th:insert="default.html :: scripts">
