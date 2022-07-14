@@ -21,11 +21,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Entity
 public class Restaurant implements Serializable{
 	
-	public Restaurant() {
-		notations = new HashSet<Notation>();
-
-		
-	}
+	
 	
 	@Id
 	private String recordid;
@@ -102,9 +98,9 @@ public class Restaurant implements Serializable{
 	}
 	
 	 @OneToMany( mappedBy = "restaurant" )
-	    private Set<Notation> notations = new HashSet<Notation>();
+	    private List<Notation> notations = new ArrayList<Notation>();
 
-	    public Set<Notation> getNotations() {
+	    public List<Notation> getNotations() {
 	        return notations;
 	    }
 

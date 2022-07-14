@@ -55,7 +55,7 @@ public class DetailController {
 		
 				
 				model.addAttribute("restaurant", restaurant);
-				model.addAttribute("notations", restaurant.getNotations());
+				//model.addAttribute("notations", restaurant.getNotations());
 				model.addAttribute("notation", notation);
 				return "showDetail";
 			}

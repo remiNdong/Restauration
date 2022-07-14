@@ -50,22 +50,25 @@
 			<p th:text="${restaurant.ville}"></p>
 
 		</div>
+		
+		<!--<p th:text="${restaurant.notations}"></p>-->
 
-		<div id="notations" th:if="${restaurant.tailleNotations>0}">
+		<div id="notationsDiv" th:if="${restaurant.tailleNotations>0}">
 
 			<ul>
-				<li th:each="not : ${notations}">
-					<span id="com" th:text="${not.date   }"></span>
-					<span><img class="etoile" th:if="${not.etoiles>0}"
-							th:each="i : ${#numbers.sequence( 0, not.etoiles)}" th:src="@{/images/etoile.jpg}" /></span>
-					<span id="user" th:text="${not.user.pseudo }"></span>
-					<span id="com" th:text="${not.commentaire }"></span>
+				<li th:each="nota : ${restaurant.notations}"> 
+					<span th:text="${nota.date}"></span>
+					<span><img class="etoile" th:if="${nota.etoiles>0}"
+							th:each="i : ${#numbers.sequence( 0, nota.etoiles)}" th:src="@{/images/etoile.jpg}" /></span>
+					<span id="userCom" th:text="${nota.user.pseudo}"></span>
+					<span  th:text="${nota.commentaire}"></span> 
 				</li>
 
 			</ul>
 			
 
 		</div>
+		
 		<div class="alert alert-info" sec:authorize="isAnonymous()" id="info">
 			<strong>Info!</strong> Identifiez vous si vous voulez laisser un commentaire
 		</div>
@@ -99,7 +102,7 @@
 				<div class="text-danger" id="erreurCom"></div>
 			</div>
 			<input type="hidden" th:field="${notation.user}" value="${notation.user}">
-			<input type="hidden" th:field="${notation.restaurant}" "${notation.restaurant}">
+			<input type="hidden" th:field="${notation.restaurant}" value="${notation.restaurant}">
 
 
 			<button type="submit" class="btn btn-primary">ENVOYER</button>

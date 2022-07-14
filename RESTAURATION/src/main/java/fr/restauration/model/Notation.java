@@ -12,6 +12,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import fr.restauration.authentification.User;
 
@@ -64,7 +66,6 @@ public class Notation implements Serializable , Comparable<Notation> {
 		this.commentaire=commentaire;
 	}
 	
-	
 	private Timestamp date;
 	public Timestamp getDate() {
 		return date;
@@ -104,7 +105,7 @@ public class Notation implements Serializable , Comparable<Notation> {
 	    
 	    public String toString() {
 	    	
-	    	return "User:"+user.getEmail()+" Restaurant:"+restaurant.getNom_restaurant()+" Etoiles:"+etoiles+"  Commentaire"+commentaire;
+	    	return "User:"+user.getEmail()+" Restaurant:"+restaurant.getNom_restaurant()+" Etoiles:"+etoiles+"  Commentaire:"+commentaire;
 	    }
 
 }

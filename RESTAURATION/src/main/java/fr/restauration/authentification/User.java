@@ -1,7 +1,9 @@
 package fr.restauration.authentification;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.Entity;
@@ -52,9 +54,9 @@ public class User implements Serializable {
 	
 
 	 @OneToMany( mappedBy = "user" )
-	 private Set<Notation> notations = new HashSet<Notation>();
+	 private List<Notation> notations = new ArrayList<Notation>();
 
-	    public Set<Notation> getNotations() {
+	    public List<Notation> getNotations() {
 	        return notations;
 	    }
 
