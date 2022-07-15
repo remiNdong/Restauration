@@ -14,11 +14,15 @@
 			background-color: #F1B992;
 			color: white;
 		}
-		
-		#etoile{width: 40px;
-	        height: 30px;}
-	        
-	        #pagination{text-align : center}
+
+		#etoile {
+			width: 40px;
+			height: 30px;
+		}
+
+		#pagination {
+			text-align: center
+		}
 	</style>
 </head>
 
@@ -30,6 +34,16 @@
 
 
 		<h3>RESTAURANTS </h3>
+		<form method="post" name="triForm" th:action="@{/show}">
+			<select th:field="${notation.etoiles}" name="etoiles" id="etoi">
+				<option value="none">Triez par Etoiles...</option>
+				<option th:each="i : ${#numbers.sequence(0, 5)}" th:value="${i}" th:text="${i}">
+				</option>
+			</select>
+
+
+
+		</form>
 		<table class="table table-hover table-bordered">
 			<tr>
 				<th>Etoiles</th>
@@ -39,7 +53,8 @@
 				<th>ville</th>
 			</tr>
 			<tr th:each="art : ${catalog}">
-				<td><img id="etoile" th:if="${art.moyenne>0}" th:each="i : ${#numbers.sequence( 1, art.moyenne)}" th:src="@{/images/etoile.jpg}"/>
+				<td><img id="etoile" th:if="${art.moyenne>0}" th:each="i : ${#numbers.sequence( 1, art.moyenne)}"
+						th:src="@{/images/etoile.jpg}" />
 				<td><a th:href="@{'/showDetail/'+${art.recordid}}" th:text="${art.nom_restaurant}"></a></td>
 				<td th:text="${art.code}"></td>
 				<td th:text="${art.adresse}"></td>
@@ -47,9 +62,10 @@
 			</tr>
 		</table>
 		<div id="pagination">
-			<a th:each="i : ${#numbers.sequence( 1, taille)}" th:href="@{'show?indexPage='+${i}}" th:text="${i}"></a>
+			<a th:each="i : ${#numbers.sequence( 1, taille)}" th:href="@{'show?indexPage='+${i}}"
+				th:text="${i+'  '}"></a>
 		</div>
-		
+
 	</div>
 	<div>
 		<th:block th:insert="default.html :: scripts">
