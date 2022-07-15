@@ -23,6 +23,10 @@
 		#pagination {
 			text-align: center
 		}
+
+		#triForm {
+			text-align: right
+		}
 	</style>
 </head>
 
@@ -34,16 +38,23 @@
 
 
 		<h3>RESTAURANTS </h3>
-		<form method="post" name="triForm" th:action="@{/show}">
-			<select th:field="${notation.etoiles}" name="etoiles" id="etoi">
-				<option value="none">Triez par Etoiles...</option>
-				<option th:each="i : ${#numbers.sequence(0, 5)}" th:value="${i}" th:text="${i}">
-				</option>
-			</select>
 
+		<div id="triForm">
+			<form method="post" th:action="@{/show}">
+				<select name="etoiles" id="etoi">
+					<option value="none">Triez par Etoiles...</option>
+					<option th:each="etoile : ${listEtoiles}" th:value="${etoile}" th:text="${etoile}">
+					</option>
+				</select>
+				<select name="ville" id="ville">
+					<option value="none">Triez par Ville...</option>
+					<option th:each="ville : ${listVilles}" th:value="${ville}" th:text="${ville}">
+					</option>
+				</select>
+				<button type="submit" class="btn btn-primary">ENVOYER</button>
+			</form>
+		</div>
 
-
-		</form>
 		<table class="table table-hover table-bordered">
 			<tr>
 				<th>Etoiles</th>

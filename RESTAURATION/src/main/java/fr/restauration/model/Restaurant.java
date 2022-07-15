@@ -9,6 +9,7 @@ import java.util.Map;
 import java.util.Set;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
@@ -97,7 +98,7 @@ public class Restaurant implements Serializable{
 		return "recordid:"+recordid+" nom_restaurant:"+nom_restaurant+ " code:"+code+" adresse:"+adresse+" ville:"+ville;
 	}
 	
-	 @OneToMany( mappedBy = "restaurant" )
+	 @OneToMany( mappedBy = "restaurant",fetch = FetchType.EAGER )
 	    private List<Notation> notations = new ArrayList<Notation>();
 
 	    public List<Notation> getNotations() {
