@@ -134,7 +134,21 @@ public class Restaurant implements Serializable{
 	    public int getTailleNotations() {
 	    	return notations.size();
 	    }
-	
+	    
+	    @Override
+	    public boolean equals( Object obj ) {
+	        if ( this == obj ) {
+	            return true;
+	        }
+	        if ( !( obj instanceof Restaurant ) ) {
+	            return false;
+	        }
+	        Restaurant autre = (Restaurant) obj;
+
+	        return this.getRecordid() == autre.getRecordid();
+	    }
+
+	   
 	
 
 }
