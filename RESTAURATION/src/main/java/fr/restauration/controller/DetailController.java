@@ -2,7 +2,9 @@ package fr.restauration.controller;
 
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
+import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,7 +41,7 @@ public class DetailController {
 	
 	//mapping pour methode Get
 			@GetMapping("/showDetail/{id}")
-			public String showDetail(Model model, @PathVariable String id) {
+			public String showDetail(Model model, @PathVariable String id,HttpServletRequest request) {
 				
 				Restaurant restaurant=restaurantService.trouver(id);
 				model.addAttribute(restaurant);
@@ -52,8 +54,16 @@ public class DetailController {
 				notation.setUser(user);
 				notation.setCommentaire("");
 				
-		
-				
+
+				String indexPageString = request.getParameter("indexPage");
+				int indexPage = 1;
+
+				if (indexPageString != null)
+					indexPage = Integer.parseInt(indexPageString);
+
+
+				// objet model permet d'inserer des attributs dans la vue et les recuperer
+				model.addAttribute("indexPage", indexPage);
 				model.addAttribute("restaurant", restaurant);
 				//model.addAttribute("notations", restaurant.getNotations());
 				model.addAttribute("notation", notation);

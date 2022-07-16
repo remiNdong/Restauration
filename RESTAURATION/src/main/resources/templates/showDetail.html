@@ -18,6 +18,8 @@
 			text-align: center;
 		}
 
+	
+
 		#myForm {
 			text-align: center;
 			border: solid #26DBF0;
@@ -68,8 +70,11 @@
 			<p th:text="${restaurant.code}"></p>
 			<p th:text="${restaurant.adresse}"></p>
 			<p th:text="${restaurant.ville}"></p>
+			<a th:href="@{'/show?indexPage='+${indexPage}}">Retour à la liste</a>
 
 		</div>
+
+	
 
 		<!--<p th:text="${restaurant.notations}"></p>-->
 		<div>

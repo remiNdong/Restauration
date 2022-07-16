@@ -39,8 +39,8 @@ public class RestaurantsController {
 
 		Object o = session.getAttribute("ensemblePage");
 
-		// si on a pas l'instruction de reinitialiser la recherche on recupere
-		// l'ensemble page de la cession
+		// si on a  l'instruction de reinitialiser la recherche 
+		// cas ou on appuie sur le lien dans la barre de navigationn
 		if (reinit != null) {
 
 			ensemblePage = new EnsemblePage<Restaurant>(restaurantService.lister());
@@ -81,6 +81,8 @@ public class RestaurantsController {
 
 			ensemblePage = new EnsemblePage<Restaurant>(restaurantService.lister());
 
+			
+			//cas ou on recupere l'objet ensemblePage pour paginer dans cet objet
 		} else if (reinit == null && o != null) {
 
 			ensemblePage = (EnsemblePage<Restaurant>) o;
@@ -107,6 +109,7 @@ public class RestaurantsController {
 
 		int taille = ensemblePage.taille();
 		// objet model permet d'inserer des attributs dans la vue et les recuperer
+		model.addAttribute("indexPage", indexPage);
 		model.addAttribute("catalog", listResto);
 		model.addAttribute("taille", taille);
 		return "showCatalog";
@@ -154,6 +157,7 @@ public class RestaurantsController {
 
 		int taille = ensemblePage.taille();
 		// objet model permet d'inserer des attributs dans la vue et les recuperer
+		model.addAttribute("indexPage", indexPage);
 		model.addAttribute("catalog", listResto);
 		model.addAttribute("taille", taille);
 		return "showCatalog";
