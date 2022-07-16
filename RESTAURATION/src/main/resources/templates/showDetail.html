@@ -81,7 +81,7 @@
 					<li th:each="nota : ${restaurant.notations}">
 						<span th:text="${nota.date}"></span>
 						<span><img class="etoile" th:if="${nota.etoiles>0}"
-								th:each="i : ${#numbers.sequence( 0, nota.etoiles)}"
+								th:each="i : ${#numbers.sequence( 1, nota.etoiles)}"
 								th:src="@{/images/etoile.jpg}" /></span>
 						<span id="userCom" th:text="${nota.user.pseudo}"></span>
 						<span> : "</span>

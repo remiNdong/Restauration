@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import fr.restauration.model.Notation;
 import fr.restauration.model.Restaurant;
 import fr.restauration.outils.EnsemblePage;
 import fr.restauration.service.RestaurantService;
@@ -32,13 +33,20 @@ public class RestaurantsController {
 	public String viewTemplate(Model model, HttpSession session, HttpServletRequest request) {
 
 		List<Restaurant> catalogBDD = null;
-		EnsemblePage<Restaurant> ensemblePage=null;
-		Object o =  session.getAttribute("ensemblePage");
-		if(o!=null)
-			 ensemblePage=(EnsemblePage<Restaurant>)o;
+		EnsemblePage<Restaurant> ensemblePage = null;
 
-		if (ensemblePage == null) {
+		String reinit = request.getParameter("reinit");
 
+		Object o = session.getAttribute("ensemblePage");
+
+		// si on a pas l'instruction de reinitialiser la recherche on recupere
+		// l'ensemble page de la cession
+		if (reinit != null) {
+
+			ensemblePage = new EnsemblePage<Restaurant>(restaurantService.lister());
+
+		} else if (reinit == null && o == null) {
+			//cas du premier acces de cette session
 			// on recupere ici la liste des restaurants sur le net au cas ou elle aurait
 			// changé
 			try {
@@ -66,12 +74,17 @@ public class RestaurantsController {
 					}
 				}
 
-				// on recupere la nouvelle version des restaurants apres ajouts des eventuels
-				// nouveaux restaurants
-				catalogBDD = restaurantService.lister();
-
 			}
-			ensemblePage = new EnsemblePage<Restaurant>(catalogBDD);
+
+			// on recupere la nouvelle version des restaurants apres ajouts des eventuels
+			// nouveaux restaurants
+
+			ensemblePage = new EnsemblePage<Restaurant>(restaurantService.lister());
+
+		} else if (reinit == null && o != null) {
+
+			ensemblePage = (EnsemblePage<Restaurant>) o;
+
 		}
 
 		List<Integer> listEtoiles = restaurantService.listeEtoiles();
@@ -87,6 +100,10 @@ public class RestaurantsController {
 			indexPage = Integer.parseInt(indexPageString);
 
 		List<Restaurant> listResto = ensemblePage.getPage(indexPage);
+
+		for (Restaurant r : listResto)
+			for (Notation n : r.getNotations())
+				System.out.println(n);
 
 		int taille = ensemblePage.taille();
 		// objet model permet d'inserer des attributs dans la vue et les recuperer

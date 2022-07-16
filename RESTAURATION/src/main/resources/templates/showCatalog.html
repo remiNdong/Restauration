@@ -42,7 +42,7 @@
 		<div id="triForm">
 			<form method="post" th:action="@{/show}">
 				<select name="etoiles" id="etoi">
-					<option value="none">Triez par Etoiles...</option>
+					<option value="none">Triez par moyenne Etoiles Sup à </option>
 					<option th:each="etoile : ${listEtoiles}" th:value="${etoile}" th:text="${etoile}">
 					</option>
 				</select>
