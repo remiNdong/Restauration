@@ -3,6 +3,15 @@
 
 <head>
 	<th:block th:insert="default.html :: headerfiles"></th:block>
+	<style type="text/css">
+		#etoile {
+			width: 40px;
+			height: 30px;
+		}
+		
+		.well {color : #F99217 }
+	
+	</style>
 </head>
 
 <body>
@@ -12,13 +21,30 @@
 	<div class="container">
 
 		<h3>Mon Compte</h3>
-		<div>
+		<div class="well">
 		<ul>
-			<li th:text="${userCompte.email}"></li>
-			<li th:text="${userCompte.pseudo}"></li>
+			<li th:text="${'Identitifant : '+userCompte.email}"></li>
+			<li th:text="${'Pseudo : '+ userCompte.pseudo}"></li>
 
 		</ul>
 		</div>
+		<table class="table table-hover table-bordered">
+			<tr>
+				<th>Etoiles</th>
+				<th>Nom</th>
+				<th>code</th>
+				<th>adresse</th>
+				<th>ville</th>
+			</tr>
+			<tr th:each="fav : ${userCompte.favoris}">
+				<td><img id="etoile" th:if="${fav.restaurant.moyenne>0}" th:each="i : ${#numbers.sequence( 1, fav.restaurant.moyenne)}"
+						th:src="@{/images/etoile.jpg}" />
+				<td><a th:href="@{'/showDetail/'+${fav.restaurant.recordid}+'?indexPage='+${indexPage}}" th:text="${fav.restaurant.nom_restaurant}"></a></td>
+				<td th:text="${fav.restaurant.code}"></td>
+				<td th:text="${fav.restaurant.adresse}"></td>
+				<td th:text="${fav.restaurant.ville}"></td>
+			</tr>
+		</table>
 			<a th:href="@{'/show?reinit=true'}">Retour à l'acceuil</a>
 
 	</div>

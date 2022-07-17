@@ -69,6 +69,28 @@ public class DetailController {
 
 			// objet model permet d'inserer des attributs dans la vue et les recuperer
 			model.addAttribute("indexPage", indexPage);
+
+			// permettra de savoir si un favoris a ete ajoute ou non pour mettre un message
+			// en consequence dans la vue
+			String dejFav = request.getParameter("dejaFavori");
+			Boolean dejaFavori = null;
+			if (dejFav != null)
+				dejaFavori = Boolean.parseBoolean(dejFav);
+
+			model.addAttribute("dejaFavori", dejaFavori);
+
+			System.out.println("Attribut deja favori present .pasDansFavoris? ");
+			System.out.println(dejaFavori);
+
+			// permettra de savoir si un favoris a ete supprime ou non pour mettre un
+			// message en consequence dans la vue
+			String pasFav = request.getParameter("pasDansFavoris");
+			Boolean pasDansFavoris = null;
+			if (pasFav != null)
+				pasDansFavoris = Boolean.parseBoolean(pasFav);
+
+			model.addAttribute("pasDansFavoris", pasDansFavoris);
+
 			model.addAttribute("restaurant", restaurant);
 			// model.addAttribute("notations", restaurant.getNotations());
 			model.addAttribute("notation", notation);
@@ -101,8 +123,8 @@ public class DetailController {
 		}
 	}
 
-	@GetMapping("/addToFavoris")
-	public String addToFavoris(@ModelAttribute Restaurant restaurant, Model model, HttpServletRequest request) {
+	@GetMapping("/addToFavoris/{id}")
+	public String addToFavoris(Model model, @PathVariable String id, HttpServletRequest request) {
 
 		try {
 
@@ -110,15 +132,18 @@ public class DetailController {
 			String username = authentication.getName();
 			User user = userService.findUserById(username);
 			Favoris favoris = new Favoris();
+			Restaurant restaurant = restaurantService.trouver(id);
+			String dejaFavori = "";
 
 			if (user.restauraurantFavoris().contains(restaurant)) {
-				model.addAttribute("dejaFavori", true);
+				dejaFavori = "true";
 
 			} else {
 				favoris.setUser(user);
 				favoris.setRestaurant(restaurant);
+				System.out.println("Id du restaurant =" + restaurant.getRecordid());
 				favorisService.enregistrer(favoris);
-				model.addAttribute("dejaFavori", false);
+				dejaFavori = "false";
 			}
 
 			String indexPageString = request.getParameter("indexPage");
@@ -129,7 +154,7 @@ public class DetailController {
 
 			model.addAttribute("indexPage", indexPage);
 
-			return "redirect:/showDetail/" + restaurant.getRecordid();
+			return "redirect:/showDetail/" + restaurant.getRecordid() + "?dejaFavori=" + dejaFavori;
 
 		} catch (Exception e) {
 
@@ -138,18 +163,19 @@ public class DetailController {
 
 	}
 
-	@GetMapping("/deleteFromFavoris")
-	public String deleteFromFavoris(@ModelAttribute Restaurant restaurant, Model model, HttpServletRequest request) {
+	@GetMapping("/deleteFromFavoris/{id}")
+	public String deleteFromFavoris(Model model, @PathVariable String id, HttpServletRequest request) {
 
 		try {
 
 			Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 			String username = authentication.getName();
 			User user = userService.findUserById(username);
-			Favoris favoris = new Favoris();
+			Restaurant restaurant = restaurantService.trouver(id);
+			String pasDansFavoris = "";
 
 			if (!user.restauraurantFavoris().contains(restaurant)) {
-				model.addAttribute("pasDansFavoris", true);
+				pasDansFavoris = "true";
 
 			} else {
 
@@ -161,7 +187,7 @@ public class DetailController {
 
 				favorisService.supprimer(idFavori);
 
-				model.addAttribute("pasDansFavoris", false);
+				pasDansFavoris = "false";
 			}
 
 			String indexPageString = request.getParameter("indexPage");
@@ -172,7 +198,7 @@ public class DetailController {
 
 			model.addAttribute("indexPage", indexPage);
 
-			return "redirect:/showDetail/" + restaurant.getRecordid();
+			return "redirect:/showDetail/" + restaurant.getRecordid() + "?pasDansFavoris=" + pasDansFavoris;
 
 		} catch (Exception e) {
 

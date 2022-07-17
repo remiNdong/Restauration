@@ -44,10 +44,13 @@ public class RestaurantsController {
 			// si on a l'instruction de reinitialiser la recherche
 			// cas ou on appuie sur le lien dans la barre de navigationn
 			if (reinit != null) {
+				
+				System.out.println("Cas de chargement 1");
 
 				ensemblePage = new EnsemblePage<Restaurant>(restaurantService.lister());
 
 			} else if (reinit == null && o == null) {
+				System.out.println("Cas de chargement 2");
 				// cas du premier acces de cette session
 				// on recupere ici la liste des restaurants sur le net au cas ou elle aurait
 				// changé
@@ -85,6 +88,7 @@ public class RestaurantsController {
 
 				// cas ou on recupere l'objet ensemblePage pour paginer dans cet objet
 			} else if (reinit == null && o != null) {
+				System.out.println("Cas de chargement 3");
 
 				ensemblePage = (EnsemblePage<Restaurant>) o;
 

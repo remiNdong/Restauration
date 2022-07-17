@@ -72,22 +72,25 @@
 			<p th:text="${restaurant.ville}"></p>
 			
 			<div>
-			<a sec:authorize="isAuthenticated()" th:href="@{'/addToFavoris?indexPage='+${indexPage}}" th:object="${restaurant}">
+			<a sec:authorize="isAuthenticated()"  th:href="@{'/addToFavoris/'+${restaurant.recordid}+'?indexPage='+${indexPage}}">
 				Ajouter aux favoris
 			</a>
 			</div>
 			
+			<div id="erreurAjoutFavoris"  class="alert alert-warning" th:if="${dejaFavori!=null}" th:text="${dejaFavori} ? 'Le restaurant fait deja parti des favoris' : 'Restaurant ajouté aux favoris'">
+			</div>
+			
 			<div>
-			<a sec:authorize="isAuthenticated()" th:href="@{'/deleteFromFavoris?indexPage='+${indexPage}}" th:object="${restaurant}">
+			<a sec:authorize="isAuthenticated()" th:href="@{'/deleteFromFavoris/'+${restaurant.recordid}+'?indexPage='+${indexPage}}">
 				Retirer aux favoris
 			</a>
 			</div>
 			
-			<div id="erreurFavoris">
-			</divid>
+			<div id="erreurRetraitFavoris"  class="alert alert-warning" th:if="${pasDansFavoris!=null}" th:text="${pasDansFavoris} ? 'Le restaurant ne fait pas parti  favoris' : 'Restaurant retiré aux favoris'">
+			</div>
 			
 			
-			<a th:href="@{'/addToFavoris/{id}?indexPage='+${indexPage}}">Retour à la liste</a>
+			<a th:href="@{'/show?indexPage='+${indexPage}}">Retour à la liste</a>
 
 		</div>
 
