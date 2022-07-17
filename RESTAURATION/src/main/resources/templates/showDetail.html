@@ -70,7 +70,24 @@
 			<p th:text="${restaurant.code}"></p>
 			<p th:text="${restaurant.adresse}"></p>
 			<p th:text="${restaurant.ville}"></p>
-			<a th:href="@{'/show?indexPage='+${indexPage}}">Retour à la liste</a>
+			
+			<div>
+			<a sec:authorize="isAuthenticated()" th:href="@{'/addToFavoris?indexPage='+${indexPage}}" th:object="${restaurant}">
+				Ajouter aux favoris
+			</a>
+			</div>
+			
+			<div>
+			<a sec:authorize="isAuthenticated()" th:href="@{'/deleteFromFavoris?indexPage='+${indexPage}}" th:object="${restaurant}">
+				Retirer aux favoris
+			</a>
+			</div>
+			
+			<div id="erreurFavoris">
+			</divid>
+			
+			
+			<a th:href="@{'/addToFavoris/{id}?indexPage='+${indexPage}}">Retour à la liste</a>
 
 		</div>
 

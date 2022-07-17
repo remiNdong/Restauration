@@ -117,6 +117,21 @@ public class Restaurant implements Serializable{
 	        notations.add( n );
 	    }
 	    
+	    @OneToMany( mappedBy = "restaurant",fetch = FetchType.LAZY )
+	    private List<Favoris> favoris = new ArrayList<Favoris>();
+
+	    public List<Favoris> getFavoris() {
+	        return favoris;
+	    }
+
+	    
+	    public void addFavoris( Favoris f ) {
+
+	        f.setRestaurant( this );
+	        favoris.add( f );
+	    }
+	    
+	    
 	    
 	    public int getMoyenne() {
 	    	

@@ -20,7 +20,7 @@ public interface RestaurantService {
 	
 	List<String> listeVilles();
 	
-	List<Integer> listeEtoiles();
+	
 
 	Restaurant trouver(String recordid);
 	

@@ -43,7 +43,7 @@
 			<form method="post" th:action="@{/show}">
 				<select name="etoiles" id="etoi">
 					<option value="none">Triez par moyenne Etoiles Sup à </option>
-					<option th:each="etoile : ${listEtoiles}" th:value="${etoile}" th:text="${etoile}">
+					<option th:each="i : ${#numbers.sequence(0, 5)}" th:value="${i}" th:text="${i}">
 					</option>
 				</select>
 				<select name="ville" id="ville">
@@ -72,7 +72,7 @@
 				<td th:text="${art.ville}"></td>
 			</tr>
 		</table>
-		<div id="pagination">
+		<div id="pagination" th:if="${taille>0}">
 			<a th:each="i : ${#numbers.sequence( 1, taille)}" th:href="@{'show?indexPage='+${i}}"
 				th:text="${i+'  '}"></a>
 		</div>

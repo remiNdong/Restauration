@@ -1,0 +1,30 @@
+<!DOCTYPE HTML>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<th:block th:insert="default.html :: headerfiles"></th:block>
+</head>
+
+<body>
+	<nav>
+		<th:block th:insert="default.html :: navbar"></th:block>
+	</nav>
+	<div class="container">
+
+		<h3>Mon Compte</h3>
+		<div>
+		<ul>
+			<li th:text="${userCompte.email}"></li>
+			<li th:text="${userCompte.pseudo}"></li>
+
+		</ul>
+		</div>
+			<a th:href="@{'/show?reinit=true'}">Retour à l'acceuil</a>
+
+	</div>
+	<div>
+		<th:block th:insert="default.html :: scripts">
+	</div>
+</body>
+
+</html>

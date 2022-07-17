@@ -57,10 +57,5 @@ public class RestaurantServiceImpl implements RestaurantService {
 		return (List<String>) restaurantRepository.getVilles();
 	}
 	
-	@Transactional(readOnly = true)
-	@Override
-	public List<Integer> listeEtoiles() {
-		return (List<Integer>) restaurantRepository.getEtoiles();
-	}
-
+	
 }

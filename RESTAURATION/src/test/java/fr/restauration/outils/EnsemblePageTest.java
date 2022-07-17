@@ -61,4 +61,16 @@ class EnsemblePageTest {
 		assertEquals("24Resto", page3.get(4).getRecordid());
 	}
 
+	@Test
+	void testnul() {
+		
+		List<Restaurant> listResto = new ArrayList<Restaurant>();
+		EnsemblePage<Restaurant> ensemblePage = new EnsemblePage<Restaurant>(listResto);
+		int nbList = ensemblePage.getPages().keySet().size();
+		// il doit y avoir 4 pages
+		assertEquals(0, nbList);
+		assertEquals(0,ensemblePage.taille());
+
+	}
+
 }
