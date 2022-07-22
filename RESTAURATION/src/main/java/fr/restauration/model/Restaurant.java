@@ -21,6 +21,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @JsonIgnoreProperties(ignoreUnknown = true)
 
 @Entity
+//annotation speciale pour la base de donnees AWS sensible a la casse
 @Table(name="restaurant")
 public class Restaurant implements Serializable{
 	
