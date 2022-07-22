@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import fr.restauration.dao.RestaurantRepository;
-import fr.restauration.dao.UtilsRepository;
 import fr.restauration.model.Restaurant;
 
 @Service
@@ -16,8 +15,6 @@ public class RestaurantServiceImpl implements RestaurantService {
 	@Autowired
 	private RestaurantRepository restaurantRepository;
 	
-	@Autowired
-	private UtilsRepository utilsRepository;
 
 	@Transactional
 	@Override
@@ -60,7 +57,7 @@ public class RestaurantServiceImpl implements RestaurantService {
 	@Transactional(readOnly = true)
 	@Override
 	public List<String> listeVilles() {
-		return (List<String>) utilsRepository.getVilles();
+		return (List<String>) restaurantRepository.getVilles();
 	}
 	
 	
