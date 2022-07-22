@@ -39,7 +39,7 @@
 			<tr th:each="fav : ${userCompte.favoris}">
 				<td><img id="etoile" th:if="${fav.restaurant.moyenne>0}" th:each="i : ${#numbers.sequence( 1, fav.restaurant.moyenne)}"
 						th:src="@{/images/etoile.jpg}" />
-				<td><a th:href="@{'/showDetail/'+${fav.restaurant.recordid}+'?indexPage='+${indexPage}}" th:text="${fav.restaurant.nom_restaurant}"></a></td>
+				<td><a th:href="@{'/showDetail/'+${fav.restaurant.recordid}}" th:text="${fav.restaurant.nom_restaurant}"></a></td>
 				<td th:text="${fav.restaurant.code}"></td>
 				<td th:text="${fav.restaurant.adresse}"></td>
 				<td th:text="${fav.restaurant.ville}"></td>
