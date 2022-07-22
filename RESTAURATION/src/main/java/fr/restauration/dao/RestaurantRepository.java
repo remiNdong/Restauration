@@ -27,8 +27,7 @@ public interface RestaurantRepository extends CrudRepository<Restaurant, String>
 			+ "having avg(n.etoiles)>=:etoiles);",nativeQuery = true)
 	public Iterable<Restaurant> findByEtoilesVille(@Param("etoiles") int etoiles, @Param("ville") String  ville);
 	
-	@Query(value="select distinct  r.ville from Restaurant r where r.ville <> '' and r.ville is not null",nativeQuery = true)
-	public Iterable<String> getVilles();
+	
 	
 
 
