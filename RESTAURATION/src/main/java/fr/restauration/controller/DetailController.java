@@ -47,6 +47,7 @@ public class DetailController {
 
 	@Autowired
 	FavorisService favorisService;
+	
 
 	// mapping pour methode Get
 	@GetMapping("/showDetail/{id}")
