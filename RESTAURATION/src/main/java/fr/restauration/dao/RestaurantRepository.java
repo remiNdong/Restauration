@@ -12,8 +12,8 @@ public interface RestaurantRepository extends CrudRepository<Restaurant, String>
 	
 	public Iterable<Restaurant> findByVille(String ville);
 	
-	@Query(value="select r.* from restaurant r",nativeQuery = true)
-	public Iterable<Restaurant> findAllRestaurants();
+	//@Query(value="select r.* from restaurant r",nativeQuery = true)
+	//public Iterable<Restaurant> findAllRestaurants();
 	
 	@Query(value="select r.* from restaurant r where r.recordid in(select r2.recordid from restaurant r2 , notation n \r\n"
 			+ "where r2.recordid=n.recordid\r\n"

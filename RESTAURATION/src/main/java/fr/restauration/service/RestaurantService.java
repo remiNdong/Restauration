@@ -12,7 +12,7 @@ public interface RestaurantService {
 	
 	List<Restaurant> lister();
 	
-	List<Restaurant> listerRestaurants();
+	//List<Restaurant> listerRestaurants();
 	
 	List<Restaurant> listerParVille(String ville);
 	
