@@ -29,6 +29,7 @@ public class AccountController {
 			return "redirect:/login?error2="+e.getMessage();
 		}
 		return "redirect:/login?reussite=true";
+		
 
 	}
 }
