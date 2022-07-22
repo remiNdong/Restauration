@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
@@ -29,9 +30,16 @@ public class Restaurant implements Serializable{
 	@Id
 	private String recordid;
 	
+	@Column(name="nom_restaurant")
 	private String nom_restaurant;
+	
+	@Column(name="code")
 	private String code;
+	
+	@Column(name="adresse")
 	private String adresse;
+	
+	@Column(name="ville")
 	private String ville;
 	
 	
