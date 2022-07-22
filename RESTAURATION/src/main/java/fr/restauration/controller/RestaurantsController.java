@@ -122,7 +122,12 @@ public class RestaurantsController {
 			return "showCatalog";
 
 		} catch (Exception e) {
-			model.addAttribute("erreurVue", e.toString()+"\n"+e.fillInStackTrace().toString());
+			String erreurString="";
+			for(StackTraceElement st : e.getStackTrace())
+				erreurString=erreurString+st.toString()+"\n";
+			
+			erreurString=erreurString+e.toString()+"\n";
+			model.addAttribute("erreurVue", erreurString);
 			return "erreurVue";
 		}
 	}
