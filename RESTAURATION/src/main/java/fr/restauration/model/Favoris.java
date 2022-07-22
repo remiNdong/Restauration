@@ -3,6 +3,7 @@ package fr.restauration.model;
 import java.io.Serializable;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -15,7 +16,7 @@ import javax.persistence.Table;
 import fr.restauration.authentification.User;
 
 @Entity
-@Table(name="favoris")
+@Table(name="favoris",schema = "ebdb")
 public class Favoris implements Serializable {
 
 	@Id

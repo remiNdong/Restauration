@@ -6,6 +6,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
@@ -17,14 +18,16 @@ import fr.restauration.model.Notation;
 import fr.restauration.model.Restaurant;
 
 @Entity
-@Table(name="user")
+@Table(name="user",schema = "ebdb")
 public class User implements Serializable {
 
 	@Id
 	private String email;
 
+	@Column(name="pseudo")
 	private String pseudo;
 
+	@Column(name="password")
 	private String password;
 
 	public String getEmail() {

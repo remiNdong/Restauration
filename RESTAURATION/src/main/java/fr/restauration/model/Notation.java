@@ -5,6 +5,7 @@ import java.sql.Date;
 import java.sql.Timestamp;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -19,7 +20,7 @@ import javax.persistence.TemporalType;
 import fr.restauration.authentification.User;
 
 @Entity
-@Table(name="notation")
+@Table(name="notation",schema = "ebdb")
 public class Notation implements Serializable , Comparable<Notation> {
 
 	@Id
@@ -58,6 +59,7 @@ public class Notation implements Serializable , Comparable<Notation> {
 		this.restaurant=restaurant;
 	}
 	
+	@Column(name="commentaire")
 	private String commentaire;
 	
 	public String getCommentaire() {
@@ -68,6 +70,7 @@ public class Notation implements Serializable , Comparable<Notation> {
 		this.commentaire=commentaire;
 	}
 	
+	@Column(name="date")
 	private Timestamp date;
 	public Timestamp getDate() {
 		return date;
@@ -78,6 +81,7 @@ public class Notation implements Serializable , Comparable<Notation> {
 		this.date=date;
 	}
 	
+	@Column(name="etoiles")
 	private Integer etoiles;
 	public Integer getEtoiles() {
 		return etoiles;

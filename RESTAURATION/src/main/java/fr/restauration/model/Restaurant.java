@@ -28,7 +28,6 @@ public class Restaurant implements Serializable{
 	
 	
 	@Id
-	@Column(name="recordid")
 	private String recordid;
 	
 	@Column(name="nom_restaurant")
