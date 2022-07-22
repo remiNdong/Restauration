@@ -102,7 +102,7 @@ public class DetailController {
 			return "showDetail";
 
 		} catch (Exception e) {
-
+			model.addAttribute("erreurVue", e.toString());
 			return "erreurVue";
 		}
 	}
@@ -126,7 +126,7 @@ public class DetailController {
 			return "redirect:/showDetail/" + notation.getRestaurant().getRecordid();
 
 		} catch (Exception e) {
-
+			model.addAttribute("erreurVue", e.toString());
 			return "erreurVue";
 		}
 	}
@@ -165,7 +165,7 @@ public class DetailController {
 			return "redirect:/showDetail/" + restaurant.getRecordid() + "?dejaFavori=" + dejaFavori;
 
 		} catch (Exception e) {
-
+			model.addAttribute("erreurVue", e.toString());
 			return "erreurVue";
 		}
 
@@ -209,7 +209,7 @@ public class DetailController {
 			return "redirect:/showDetail/" + restaurant.getRecordid() + "?pasDansFavoris=" + pasDansFavoris;
 
 		} catch (Exception e) {
-
+			model.addAttribute("erreurVue", e.toString());
 			return "erreurVue";
 		}
 

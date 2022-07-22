@@ -40,7 +40,7 @@ public class MonCompteController {
 			return "monCompte";
 
 		} catch (Exception e) {
-
+			model.addAttribute("erreurVue", e.toString());
 			return "erreurVue";
 		}
 	}
