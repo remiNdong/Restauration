@@ -36,7 +36,7 @@ public class RestaurantsController {
 	@RequestMapping("/show")
 	public String viewTemplate(Model model, HttpSession session, HttpServletRequest request) {
 
-		try {
+	//	try {
 
 			List<Restaurant> catalogBDD = null;
 			EnsemblePage<Restaurant> ensemblePage = null;
@@ -121,10 +121,10 @@ public class RestaurantsController {
 			model.addAttribute("taille", taille);
 			return "showCatalog";
 
-		} catch (Exception e) {
-			model.addAttribute("erreurVue", e.toString());
-			return "erreurVue";
-		}
+		//} catch (Exception e) {
+		//	model.addAttribute("erreurVue", e.toString());
+		//	return "erreurVue";
+		//}
 	}
 
 	// mapping pour methode Post
