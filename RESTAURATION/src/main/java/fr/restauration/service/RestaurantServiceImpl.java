@@ -26,6 +26,13 @@ public class RestaurantServiceImpl implements RestaurantService {
 	public List<Restaurant> lister() {
 		return (List<Restaurant>) restaurantRepository.findAll();
 	}
+	
+	@Transactional(readOnly = true)
+	@Override
+	public List<Restaurant> listerRestaurants() {
+		return (List<Restaurant>) restaurantRepository.findAllRestaurants();
+	}
+
 
 	@Transactional(readOnly = true)
 	@Override

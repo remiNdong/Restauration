@@ -12,6 +12,8 @@ public interface RestaurantService {
 	
 	List<Restaurant> lister();
 	
+	List<Restaurant> listerRestaurants();
+	
 	List<Restaurant> listerParVille(String ville);
 	
 	List<Restaurant> listerParEtoilesVille(int etoiles,String ville);

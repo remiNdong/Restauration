@@ -51,7 +51,8 @@ public class RestaurantsController {
 				
 				System.out.println("Cas de chargement 1");
 
-				ensemblePage = new EnsemblePage<Restaurant>(restaurantService.lister());
+				//ensemblePage = new EnsemblePage<Restaurant>(restaurantService.lister());
+				ensemblePage = new EnsemblePage<Restaurant>(restaurantService.listerRestaurants());
 
 			} else if (reinit == null && o == null) {
 				System.out.println("Cas de chargement 2");
@@ -66,7 +67,8 @@ public class RestaurantsController {
 				}
 
 				Collection<Restaurant> catalogJson = facade.getListeRestaurants();
-				catalogBDD = restaurantService.lister();
+				//catalogBDD = restaurantService.lister();
+				catalogBDD = restaurantService.listerRestaurants();
 
 				// si des restaurants ont été ajoutés au site depuis la derniere visite, on les
 				// ajoute a la BDD
@@ -88,7 +90,8 @@ public class RestaurantsController {
 				// on recupere la nouvelle version des restaurants apres ajouts des eventuels
 				// nouveaux restaurants
 
-				ensemblePage = new EnsemblePage<Restaurant>(restaurantService.lister());
+				//ensemblePage = new EnsemblePage<Restaurant>(restaurantService.lister());
+				ensemblePage = new EnsemblePage<Restaurant>(restaurantService.listerRestaurants());
 
 				// cas ou on recupere l'objet ensemblePage pour paginer dans cet objet
 			} else if (reinit == null && o != null) {
