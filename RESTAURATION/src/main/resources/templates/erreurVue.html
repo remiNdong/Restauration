@@ -14,6 +14,7 @@
 		<div class="jumbotron">
 
 			<h3>Problème technique , veuillez retourner sur la page d'acceuil</h3>
+			<p th:text="${erreurVue}"></p>
 			<a th:href="@{'/show?reinit=true'}">Retour à l'acceuil</a>
 
 		</div>

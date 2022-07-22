@@ -119,7 +119,7 @@ public class RestaurantsController {
 			return "showCatalog";
 
 		} catch (Exception e) {
-
+			model.addAttribute("erreurVue", e.toString());
 			return "erreurVue";
 		}
 	}
