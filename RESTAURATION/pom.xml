@@ -11,6 +11,8 @@
 	<groupId>fr.cnam</groupId>
 	<artifactId>RESTAURATION</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	<packaging>war</packaging>
+	
 	<name>RESTAURATION</name>
 	<description>Recuperation des restaurants</description>
 	<properties>
