@@ -67,7 +67,7 @@
 				<img class="etoile" th:each="i : ${#numbers.sequence( 1, restaurant.moyenne)}"
 					th:src="@{/images/etoile.jpg}" />
 			</span>
-			<p th:text="${restaurant.code}"></p>
+			<p th:text="${restaurant.codepostal}"></p>
 			<p th:text="${restaurant.adresse}"></p>
 			<p th:text="${restaurant.ville}"></p>
 			

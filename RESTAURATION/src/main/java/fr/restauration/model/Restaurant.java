@@ -22,19 +22,20 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @JsonIgnoreProperties(ignoreUnknown = true)
 
 @Entity
-@Table(name="restaurant")
+@Table(name="restaurant",schema = "ebdb")
 public class Restaurant implements Serializable{
 	
 	
 	
 	@Id
+	@Column(name="recordid")
 	private String recordid;
 	
 	@Column(name="nom_restaurant")
 	private String nom_restaurant;
 	
-	@Column(name="code")
-	private String code;
+	@Column(name="codepostal")
+	private String codepostal;
 	
 	@Column(name="adresse")
 	private String adresse;
@@ -46,7 +47,7 @@ public class Restaurant implements Serializable{
 	@JsonProperty("fields")
 	private void unpackNested(Fields fields) {
 		nom_restaurant = fields.getNom_restaurant();
-		code = fields.getCode();
+		codepostal = fields.getCode();
 		adresse=fields.getAdresse();
 		ville=fields.getVille();
 	}
@@ -83,14 +84,14 @@ public class Restaurant implements Serializable{
 
 
 
-	public String getCode() {
-		return code;
+	public String getCodePostal() {
+		return codepostal;
 	}
 
 
 
-	public void setCode(String code) {
-		this.code = code;
+	public void setCodePostal(String code) {
+		this.codepostal = code;
 	}
 
 
@@ -106,7 +107,7 @@ public class Restaurant implements Serializable{
 	}
 	
 	public String toString() {
-		return "recordid:"+recordid+" nom_restaurant:"+nom_restaurant+ " code:"+code+" adresse:"+adresse+" ville:"+ville;
+		return "recordid:"+recordid+" nom_restaurant:"+nom_restaurant+ " codepostal:"+codepostal+" adresse:"+adresse+" ville:"+ville;
 	}
 	
 	 @OneToMany( mappedBy = "restaurant",fetch = FetchType.EAGER )
