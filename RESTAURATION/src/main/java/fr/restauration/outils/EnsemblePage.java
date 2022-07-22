@@ -5,7 +5,9 @@ import java.util.List;
 import java.util.TreeMap;
 
 /*
-**Objet qui permettra de paginer les resultats des différents services dans les pages Web*/
+**Objet qui permettra de diviser une liste de Restaurants en plusieurs listes de 10 restaurants
+*Cela permettra d'afficher les restaurants 10 par 10
+**/
 
 public class EnsemblePage<E> {
 

@@ -13,6 +13,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import fr.restauration.authentification.User;
 import fr.restauration.authentification.UserService;
 
+/*
+ * Controller qui donnera accès au compte de l'utilisateur authentifié avec ses infromations personnelles
+ * et ses favoris
+ */
 @Controller
 public class MonCompteController {
 

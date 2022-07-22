@@ -8,6 +8,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+/*
+ * Controller utilise pour la creation d'un nouveau compte utilisateur
+ */
 
 @Controller
 public class AccountController {

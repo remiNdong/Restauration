@@ -10,7 +10,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @JsonIgnoreProperties(ignoreUnknown = true)
 
 /*
- * Fields represente des attributs qui seront recuperer en deserialisant un Restaurant d'un fichier  json
+ * Fields represente des attributs qui seront recuperés en deserialisant un Restaurant d'un fichier  json
  */
 
 public class Fields  implements Serializable{

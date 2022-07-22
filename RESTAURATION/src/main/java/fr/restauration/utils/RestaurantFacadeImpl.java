@@ -10,6 +10,11 @@ import java.util.TreeMap;
 
 import fr.restauration.model.Restaurant;
 
+/*
+ * Classe qui permet de faire une requete à l'url enregistrée, recuperer un fichier json, le parser pour recuperer les 
+ * restaurants et mettre ces restaurants dans une map
+ * On pourra ensuite accéder à ces restaurants par id ou à leur liste sous forme d'objet java
+ */
 public class RestaurantFacadeImpl extends  AbstractRestaurantFacade{
 	
 	private final String adresseFichier="restaurants.txt";

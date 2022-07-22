@@ -20,6 +20,10 @@ import fr.restauration.service.RestaurantService;
 import fr.restauration.utils.RestaurantFacadeI;
 import fr.restauration.utils.RestaurantFacadeImpl;
 
+/*
+ * Controller qui donnera accès à la liste des restaurants et permettra
+ * de faire des recherches sur la ville ou le nombre d'etoiles
+ */
 @Controller
 public class RestaurantsController {
 
@@ -42,7 +46,7 @@ public class RestaurantsController {
 			Object o = session.getAttribute("ensemblePage");
 
 			// si on a l'instruction de reinitialiser la recherche
-			// cas ou on appuie sur le lien dans la barre de navigationn
+			// cas ou on appuie sur le lien RESTAURANT dans la barre de navigation
 			if (reinit != null) {
 				
 				System.out.println("Cas de chargement 1");
@@ -121,6 +125,10 @@ public class RestaurantsController {
 	}
 
 	// mapping pour methode Post
+	/*
+	 * La methode post est utilisée lorsqu'on fait des recherches sur la  ville
+	 * ou le nombre d'etoiles du restaurant
+	 */
 	@PostMapping("/show")
 	public String viewTemplateBis(Model model, HttpSession session, HttpServletRequest request) {
 

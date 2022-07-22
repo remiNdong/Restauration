@@ -1,6 +1,10 @@
 package fr.restauration;
 
 import java.util.Arrays;
+
+/*
+ * Classe qui permettra d'avoir accès aux proprietes de la base de données du cloud dans les logs
+ */
 import java.util.stream.StreamSupport;
 
 import org.slf4j.Logger;

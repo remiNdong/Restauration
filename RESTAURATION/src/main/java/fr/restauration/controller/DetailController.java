@@ -29,6 +29,10 @@ import fr.restauration.service.FavorisService;
 import fr.restauration.service.NotationService;
 import fr.restauration.service.RestaurantService;
 
+/*
+ * Controller qui permettra de voir le detail d'un restaurant, de lui ajouter une notation
+ *  et de le mettre ou l'enlever des favoris pour les utilisateurs authentifiés
+ */
 @Controller
 public class DetailController {
 
@@ -79,8 +83,6 @@ public class DetailController {
 
 			model.addAttribute("dejaFavori", dejaFavori);
 
-			System.out.println("Attribut deja favori present .pasDansFavoris? ");
-			System.out.println(dejaFavori);
 
 			// permettra de savoir si un favoris a ete supprime ou non pour mettre un
 			// message en consequence dans la vue
@@ -93,6 +95,8 @@ public class DetailController {
 
 			model.addAttribute("restaurant", restaurant);
 			// model.addAttribute("notations", restaurant.getNotations());
+			
+			//on fournit une notation vierge au cas ou l'utilisateur voudrait laisser une notation et un commentaire
 			model.addAttribute("notation", notation);
 			return "showDetail";
 
@@ -102,6 +106,9 @@ public class DetailController {
 		}
 	}
 
+	/*
+	 * Methode utilisée pour enregister la notation
+	 */
 	@PostMapping("/showDetail")
 	public String newArticle(@ModelAttribute Notation notation, Model model) {
 

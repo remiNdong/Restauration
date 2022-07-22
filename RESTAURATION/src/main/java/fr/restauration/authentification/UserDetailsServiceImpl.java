@@ -2,6 +2,7 @@ package fr.restauration.authentification;
 
 import java.util.List;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContext;
@@ -10,6 +11,10 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+
+/*
+ * Classe permettant la bonne identification des users
+ */
 
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {

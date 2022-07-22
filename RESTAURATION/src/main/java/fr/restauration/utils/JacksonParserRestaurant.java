@@ -8,7 +8,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import fr.restauration.model.Restaurant;
 
 /*
- * Classe qui definit comment parser des restaurants recuperer dans un fichier json
+ * Classe qui definit comment parser des restaurants recuperés dans un fichier json
  */
 public class JacksonParserRestaurant implements ParserRestaurantI {
 	
