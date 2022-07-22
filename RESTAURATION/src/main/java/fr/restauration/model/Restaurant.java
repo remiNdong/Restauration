@@ -21,6 +21,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @JsonIgnoreProperties(ignoreUnknown = true)
 
 @Entity
+@Table(name="restaurant")
 public class Restaurant implements Serializable{
 	
 	
@@ -33,13 +34,13 @@ public class Restaurant implements Serializable{
 	private String adresse;
 	private String ville;
 	
-//	@JsonProperty("fields")
-//	private void unpackNested(Fields fields) {
-	//	nom_restaurant = fields.getNom_restaurant();
-	//	code = fields.getCode();
-	//	adresse=fields.getAdresse();
-	//	ville=fields.getVille();
-	//}
+	@JsonProperty("fields")
+	private void unpackNested(Fields fields) {
+		nom_restaurant = fields.getNom_restaurant();
+		code = fields.getCode();
+		adresse=fields.getAdresse();
+		ville=fields.getVille();
+	}
 	
 	
 	

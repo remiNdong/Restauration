@@ -10,12 +10,14 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 import fr.restauration.model.Favoris;
 import fr.restauration.model.Notation;
 import fr.restauration.model.Restaurant;
 
 @Entity
+@Table(name="user")
 public class User implements Serializable {
 
 	@Id
