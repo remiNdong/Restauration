@@ -84,13 +84,13 @@ public class Restaurant implements Serializable{
 
 
 
-	public String getCodePostal() {
+	public String getCodepostal() {
 		return codepostal;
 	}
 
 
 
-	public void setCodePostal(String code) {
+	public void setCodepostal(String code) {
 		this.codepostal = code;
 	}
 
