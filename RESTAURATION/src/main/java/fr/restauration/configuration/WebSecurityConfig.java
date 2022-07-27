@@ -22,6 +22,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.antMatchers("/webjars/**", "/images/**", "/login", "/show", "/showDetail/**", "/new-account")
 				.permitAll().anyRequest().authenticated();
 	}
+	
 
 	@Bean
 	public BCryptPasswordEncoder bCryptPasswordEncoder() {

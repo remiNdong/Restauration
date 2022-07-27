@@ -36,6 +36,7 @@ import fr.restauration.service.RestaurantService;
 @Controller
 public class DetailController {
 
+	
 	@Autowired
 	RestaurantService restaurantService;
 
