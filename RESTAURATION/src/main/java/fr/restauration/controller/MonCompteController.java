@@ -20,6 +20,7 @@ import fr.restauration.authentification.UserService;
 
 @Controller
 public class MonCompteController {
+	
 
 	@Autowired
 	UserService userService;

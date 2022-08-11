@@ -27,6 +27,7 @@ import fr.restauration.utils.RestaurantFacadeImpl;
 @Controller
 public class RestaurantsController {
 
+	
 	@Autowired
 	RestaurantService restaurantService;
 
